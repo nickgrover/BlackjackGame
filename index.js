@@ -8,18 +8,17 @@ let userHasPocketAce = false;
 let dealerIsShowingPossibleBlackjack = false;
 let message = "";
 
-let gameMessageElement = document.getElementById('game-message');
+const gameMessageElement = document.getElementById('game-message');
 
-let userCardsElement = document.getElementById('user-cards');
-let dealerCardsElement = document.getElementById('dealer-cards');
+const userCardsElement = document.getElementById('user-cards');
+const dealerCardsElement = document.getElementById('dealer-cards');
 
-let userTotalElement = document.getElementById('user-total');
-let dealerTotalElement = document.getElementById('dealer-total');
+const userTotalElement = document.getElementById('user-total');
+const dealerTotalElement = document.getElementById('dealer-total');
 
-let shownButtons = document.getElementById('buttons');
-let startButton = document.getElementById('start-button');
-let gameButtons = document.getElementById('game-buttons');
-let playAgainButton = document.getElementById('play-again-button');
+const startButton = document.getElementById('start-button');
+const gameButtons = document.getElementById('game-buttons');
+const playAgainButton = document.getElementById('play-again-button');
 if (isUserAlive === false) {
     startButton.style.display = 'block';
     gameButtons.style.display = 'none';
@@ -27,6 +26,7 @@ if (isUserAlive === false) {
 } 
 
 function startGame() {
+    startButton.style.display = 'none';
     let userFirstCard = getRandomNumber();
     let userSecondCard = getRandomNumber();
     let dealerFirstCard = getRandomNumber();
@@ -98,8 +98,10 @@ function playUserHand() {
         gameButtons.style.display = 'none';
     } else if (userSum < 21) {
         message = "Would you like to hit or stay?";
-        startButton.style.display = 'none';
-        gameButtons.style.display = 'block';
+        setTimeout( function() {
+            startButton.style.display = 'none';
+            gameButtons.style.display = 'block';
+        }, 500);
     } else {
         message = "Sorry, you busted";
         isUserAlive = false;
@@ -112,8 +114,12 @@ function playUserHand() {
 function hit() {
     if (isUserAlive && hasBlackjack === false) {
         let newCard = getRandomNumber();
+        if (newCard === 1) {
+            newCard = 11;
+        }
         userSum += newCard;
         userCards.push(newCard);
+        
         if (userCards.includes(11) && userSum > 21) {
             let userSum = checkForAceBust(userCards);
         }
@@ -211,6 +217,9 @@ function playAgain() {
     dealerCards = [];
     userSum = 0;
     dealerSum = 0; 
+    hasBlackjack = false;
+    userHasPocketAce = false;
+    dealerIsShowingPossibleBlackjack = false;
     dealerTotalElement.textContent = "Dealer's total: ";
     startGame();
 }
