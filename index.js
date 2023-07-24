@@ -211,9 +211,17 @@ function hit() {
         // if (userCards.includes(11) && userSum > 21) {
         //     userSum = checkForAceBust(userCards);
         // }
-        renderGame();
+        displayCard(newCard, userCardsElement);
+        userTotalElement.textContent = "Your total: " +  userSum;
+        playUserHand();
+        // updateGame(newCard);
     }
 }
+
+// function updateGame(card) {
+//     displayCard(card, userCardsElement);
+//     userTotalElement.textContent = "Your total: " +  userSum;
+// }
 
 function stay() {
     // dealerCardsElement.textContent = "Dealer's cards: ";
