@@ -1,6 +1,5 @@
 function buildDeck() {
     const values = [ 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-    // how to convert these values to ints, and get the int values of the face cards
     const suits = [ 'Hearts', 'Diamonds', 'Spades', 'Clubs'];
     const cards = [];
     for (let s = 0; s < suits.length; s++ ) {
@@ -63,7 +62,8 @@ function startGame() {
     deck = buildDeck();
     console.log(dealerCards);
     playAgainButton.style.display = 'none';
-    dealerTotalElement.textContent = "Dealer's total: ";
+    userCardsElement.innerHTML = "";
+    dealerCardsElement.innerHTML = "";
     let userFirstCard = getRandomCard(deck);
     let userSecondCard = getRandomCard(deck);
     let dealerFirstCard = getRandomCard(deck);
@@ -103,61 +103,14 @@ function displayCard(currentCard, displayElement) {
     displayElement.insertAdjacentElement('beforeend', card);
 }
 
-// function startGame() {
-//     deck = buildDeck();
-//     console.log(dealerCards);
-//     playAgainButton.style.display = 'none';
-//     dealerTotalElement.textContent = "Dealer's total: ";
-//     let userFirstCard = getRandomCard(deck);
-//     let userSecondCard = getRandomCard(deck);
-//     let dealerFirstCard = getRandomCard(deck);
-//     let dealerSecondCard = getRandomCard(deck);
-
-//     const testCard = document.createElement("div");
-//     testCard.classList.add("card", userFirstCard.cardSuit.toLowerCase());
-//     testCard.innerHTML = 
-//     '<span class="card-value-suit top">' + userFirstCard.cardValue + entity + '</span>' + 
-//     '<span class="card-suit">' + entity + '</span>' + 
-//     '<span class="card-value-suit bot">' + userFirstCard.cardValue + entity + '</span>';
-//     document.body.appendChild(userFirstCard);
-
-//     if (userFirstCard === 1 && userSecondCard === 1) {
-//         userFirstCard = 11;
-//         userSecondCard = 1;
-//         userHasPocketAce = true;
-//     } else if (userFirstCard === 1 || userSecondCard === 1) {
-//         userFirstCard === 1 ? userFirstCard = 11 : userSecondCard = 11;
-//         userHasPocketAce = true;
-//     }
-//     userCards = [userFirstCard, userSecondCard];
-//     userSum = userFirstCard + userSecondCard;
-//     if (dealerFirstCard === 1 || dealerFirstCard === 10) {
-//         dealerIsShowingPossibleBlackjack = true;
-//         dealerFirstCard === 1 ? dealerFirstCard = 11 : dealerFirstCard = 10;
-//     } 
-//     if (dealerFirstCard === 1 && dealerSecondCard === 1) {
-//         dealerIsShowingPossibleBlackjack = true;
-//         dealerFirstCard = 11;
-//         dealerSecondCard = 1;
-//     }
-//     dealerCards = [dealerFirstCard, dealerSecondCard];
-//     dealerSum = dealerFirstCard + dealerSecondCard;
-//     isUserAlive = true;
-//     if (userSum === 21) {
-//         hasBlackjack = true;
-//     }
-//     renderGame();
-// }
 
 function renderGame() {
-    // userCardsElement.textContent = "Your cards: ";
     userCards.forEach( (card) => {
         displayCard(card, userCardsElement);
-        // userCardsElement.textContent += number + " ";
     }); 
     userTotalElement.textContent = "Your total: " +  userSum;
-    // dealerCardsElement.textContent = "Dealer's cards: " + dealerCards[0];
     displayCard(dealerCards[0], dealerCardsElement);
+    dealerTotalElement.textContent = "Dealer's total: " + dealerCards[0].intValue;
 
     if (hasBlackjack === true) {
         gameMessageElement.textContent = "You got Blackjack!";
@@ -192,9 +145,7 @@ function playUserHand() {
         }, 500);
     } else {
         message = "Sorry, you busted";
-        isUserAlive = false;
-        startButton.style.display = 'block';
-        gameButtons.style.display = 'none';
+        clearGame();
     }
     gameMessageElement.textContent = message;
 }
@@ -208,51 +159,36 @@ function hit() {
         if (containsAce && userSum > 21) {
             userSum = checkForAceBust(userCards);
         }
-        // if (userCards.includes(11) && userSum > 21) {
-        //     userSum = checkForAceBust(userCards);
-        // }
         displayCard(newCard, userCardsElement);
         userTotalElement.textContent = "Your total: " +  userSum;
         playUserHand();
-        // updateGame(newCard);
     }
 }
 
-// function updateGame(card) {
-//     displayCard(card, userCardsElement);
-//     userTotalElement.textContent = "Your total: " +  userSum;
-// }
-
 function stay() {
-    // dealerCardsElement.textContent = "Dealer's cards: ";
-        dealerCards.forEach( (card) => {
-            displayCard(card, dealerCardsElement);
-            // dealerCardsElement.textContent += card + " ";
-        });
-        dealerTotalElement.textContent = "Dealer's total: " + dealerSum;
-        if (dealerSum >= 17) {
-            checkWinner();
-        } else {
-            if (dealerSum < 22) {
-                setTimeout( function() {
-                    let dealerNextCard = getRandomCard(deck);
-                    dealerCards.push(dealerNextCard);
-                    dealerSum += dealerNextCard.intValue;
-                    const containsAce = dealerCards.some( (card) => card.intValue === 11);
-                    if (containsAce && dealerSum > 21) {
-                        dealerSum = checkForAceBust(dealerCards);
-                    }
-                    // if (dealerCards.includes(11) && dealerSum > 21) {
-                    //     let dealerSum = checkForAceBust(dealerCards);
-                    // }
-                    stay();
-                }, 2000);
-            }
+    displayCard(dealerCards[dealerCards.length - 1], dealerCardsElement);
+    dealerTotalElement.textContent = "Dealer's total: " + dealerSum;
+    if (dealerSum >= 17) {
+        checkWinner();
+    } else {
+        if (dealerSum < 22) {
+            setTimeout( function() {
+                let dealerNextCard = getRandomCard(deck);
+                dealerCards.push(dealerNextCard);
+                dealerSum += dealerNextCard.intValue;
+                const containsAce = dealerCards.some( (card) => card.intValue === 11);
+                if (containsAce && dealerSum > 21) {
+                    dealerSum = checkForAceBust(dealerCards);
+                }
+                stay();
+            }, 2000);
         }
+    }
 }
 
 function checkForAceBust(cardArr) {
-    cardArr[cardArr.indexOf(11)] = 1;
+    console.log(cardArr[cardArr.indexOf(11)])
+    cardArr[cardArr.indexOf(11)].intValue = 1;
     let newSum = cardArr.reduce( (previousTotal, currentTotal) => {
         return previousTotal + currentTotal;
     }, 0);
@@ -281,7 +217,6 @@ function checkForDealerBlackjack() {
             }, 2000);
         }
     }, 2000);
-    // gameMessageElement.textContent = message;
     return dealerHasBlackjack;
 }
 
@@ -296,11 +231,9 @@ function checkWinner() {
         gameMessageElement.textContent = "You pushed!";
     }
     clearGame();
-    // gameMessageElement.textContent = message;
 }
 
 function clearGame() {
-    // cards = [];
     userCards = [];
     dealerCards = [];
     userSum = 0;
