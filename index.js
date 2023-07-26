@@ -132,22 +132,21 @@ function renderGame() {
 
 function playUserHand() {
     if (userSum === 21 && userHasBlackjack === false) {
-        message = "You got 21! Checking on dealer";
+        gameMessageElement.textContent = "You got 21! Checking on dealer";
         userHasBlackjack = true;
         stay();
         startButton.style.display = 'none';
         gameButtons.style.display = 'none';
     } else if (userSum < 21) {
-        message = "Would you like to hit or stay?";
+        gameMessageElement.textContent = "Would you like to hit or stay?";
         setTimeout( function() {
             startButton.style.display = 'none';
             gameButtons.style.display = 'block';
         }, 500);
     } else {
-        message = "Sorry, you busted";
+        gameMessageElement.textContent = "Sorry, you busted";
         clearGame();
     }
-    gameMessageElement.textContent = message;
 }
 
 function hit() {
@@ -166,6 +165,7 @@ function hit() {
 }
 
 function stay() {
+    gameButtons.style.display = 'none';
     displayRestOfDealerInfo();
     if (dealerSum >= 17) {
         checkWinner();
@@ -180,6 +180,10 @@ function stay() {
                     dealerSum = checkForAceBust(dealerCards);
                 }
                 stay();
+            }, 2000);
+        } else {
+            setTimeout(function() {
+                checkWinner();
             }, 2000);
         }
     }
