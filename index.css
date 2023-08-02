@@ -4,7 +4,8 @@ body {
     background-size: cover;
     text-align: center;
     color: white;
-    height: 100vh;
+    height: 80vh;
+    font-size: 24px;
 }
 
 h1 {
@@ -13,38 +14,64 @@ h1 {
 
 button {
     color: #016f32;
-    width: 150px;
+    width: 175px;
     background: goldenrod;
     padding-top: 5px;
     padding-bottom: 5px;
     font-weight: bold;
     border: none;
     border-radius: 3px;
-    font-size: 16px;
-    height: 35px;
+    font-size: 24px;
+    height: 50px;
+    box-shadow: 0px 0px 1px 1px rgb(211,211,211);
+}
+
+#stay {
+    margin-right: 2px;
+}
+#hit {
+    margin-left: 2px;
+}
+
+button:hover {
+    background-color: rgb(211,211,211);
+    transition: 0.3s;
+}
+
+#player-name, #dealer-name {
+    line-height: 24px;
 }
 
 .board {
     display: flex;
     justify-content: space-around;
     flex-basis: auto;
-    height: 300px;
+    height: 350px;
+    margin-bottom: 50px;
+    /* margin-top: 20px; */
+}
+
+.player-side, .dealer-side{
+    display: flex;
+    flex-direction: column;
+    /* height: 100%; */
 }
 
 .user, .dealer {
-    width: 532px;
-    background-color: rgb(26, 78, 3);
+    width: 575px;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 80%;
     justify-content: space-between;
     box-shadow: 10px 10px 10px black;
-    
+    background-image: linear-gradient(#C0C0C0 25%, 75%, #00563B);
+    border-radius: 8px;
 }
 
 #user-cards, #dealer-cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
 }
 
@@ -55,13 +82,11 @@ button {
 .content {
     display: flex;
     flex-direction: column;
-    min-height: 75%;
-    justify-content: space-evenly;
+    min-height: 90%;
+    /* justify-content: space-evenly; */
 }
 
-div.content > * {
 
-}
 
 .card {
     position: relative;
@@ -71,6 +96,7 @@ div.content > * {
     border: 1px solid #ccc;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
     background-color: white;
+    margin-top: 40px;
 }
 
 .card-value-suit {

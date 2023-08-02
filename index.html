@@ -13,20 +13,26 @@
             
             <h3 id="game-message">Press start to begin a game</h3>
             <div class="board">
-                <div class="user">
-                    <p>Your cards: </p>
-                    <div id="user-cards">
-
+                <div class="player-side">
+                    <p id="player-name">Player</p>
+                    <div class="user">
+                        <!-- <p>Your cards: </p> -->
+                        <div id="user-cards">
+    
+                        </div>
+                        <p id="user-total">Your total: </p>
                     </div>
-                    <p id="user-total">Your total: </p>
                 </div>
-                <div class="dealer">
-                    <p>Dealer's cards: </p>
-                    <div id="dealer-cards">
-                       
+                <div class="dealer-side">
+                    <p id="dealer-name">Dealer</p>
+                    <div class="dealer">
+                        <div id="dealer-cards">
+                            
+                        </div>
+                        <p id="dealer-total">Dealer's total: </p>
                     </div>
-                    <p id="dealer-total">Dealer's total: </p>
                 </div>
+                
             </div>
             <div id="buttons">
                 <div id="start-button">
@@ -36,8 +42,8 @@
                     <button onclick="startGame()">Play Again</button>
                 </div>
                 <div id="game-buttons">
-                    <button onclick="stay()">Stay</button>
-                    <button onclick="hit()">Hit</button>
+                    <button onclick="stay()" id="stay">Stay</button>
+                    <button onclick="hit()" id="hit">Hit</button>
                 </div>
             </div>
         </div>
