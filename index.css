@@ -38,15 +38,33 @@ button:hover {
     transition: 0.3s;
 }
 
-#player-name, #dealer-name {
-    line-height: 24px;
+#player-name, #dealer-name { 
+    /* line-height: 50px;  */
+    /* font-size: 28px;
+    text-align: center; */
+    /* margin: auto;  */
+} 
+
+.person {
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    margin: auto;
+    border: 5px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-message {
+
 }
 
 .board {
     display: flex;
-    justify-content: space-around;
-    flex-basis: auto;
+    justify-content: space-between;
     height: 350px;
+    /* height: 100%; */
     margin-bottom: 50px;
     /* margin-top: 20px; */
 }
@@ -54,6 +72,7 @@ button:hover {
 .player-side, .dealer-side{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     /* height: 100%; */
 }
 
@@ -64,8 +83,9 @@ button:hover {
     height: 80%;
     justify-content: space-between;
     box-shadow: 10px 10px 10px black;
-    background-image: linear-gradient(#C0C0C0 25%, 75%, #00563B);
+    background-image: linear-gradient(#C0C0C0 10%, 90%, goldenrod);
     border-radius: 8px;
+    font-weight: bold;
 }
 
 #user-cards, #dealer-cards {

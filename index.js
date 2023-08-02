@@ -66,8 +66,8 @@ function startGame() {
     userCardsElement.innerHTML = "";
     dealerCardsElement.innerHTML = "";
     let userFirstCard = getRandomCard(deck);
-    let userSecondCard = getRandomCard(deck);
     let dealerFirstCard = getRandomCard(deck);
+    let userSecondCard = getRandomCard(deck);
     let dealerSecondCard = getRandomCard(deck);
 
     if (userFirstCard.intValue === 11 && userSecondCard.intValue === 11) {
