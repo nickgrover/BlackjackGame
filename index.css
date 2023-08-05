@@ -10,20 +10,26 @@ body {
 
 h1 {
     color: goldenrod;
+    height: 5%;
 }
 
 button {
-    color: #016f32;
+    /* color: #016f32; */
     width: 175px;
-    background: goldenrod;
-    padding-top: 5px;
+    /* background: goldenrod; */
+    /* padding-top: 5px;
     padding-bottom: 5px;
-    font-weight: bold;
-    border: none;
-    border-radius: 3px;
-    font-size: 24px;
-    height: 50px;
-    box-shadow: 0px 0px 1px 1px rgb(211,211,211);
+    font-weight: bold; */
+    /* border: none; */
+    /* border-radius: 3px; */
+    /* font-size: 24px; */
+    /* height: 50px; */
+    /* box-shadow: 0px 0px 1px 1px rgb(211,211,211); */
+}
+
+.buttons {
+    /* flex-grow: 1; */
+    height: 100px;
 }
 
 #stay {
@@ -33,10 +39,10 @@ button {
     margin-left: 2px;
 }
 
-button:hover {
+/* button:hover {
     background-color: rgb(211,211,211);
     transition: 0.3s;
-}
+} */
 
 #player-name, #dealer-name { 
     /* line-height: 50px;  */
@@ -50,19 +56,27 @@ button:hover {
     height: 50px;
     text-align: center;
     margin: auto;
-    border: 5px solid black;
+    border: 2px solid black;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.813);
+    color: rgb(194, 147, 28);
+    font-weight: bold;
+    font-size: 32px;
+    box-shadow: 5px 5px 5px black;
+
 }
 
 #game-message {
-
+    font-size: 28px;
+    /* height: 20px; */
 }
 
 .board {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 350px;
     /* height: 100%; */
     margin-bottom: 50px;
@@ -103,8 +117,35 @@ button:hover {
     display: flex;
     flex-direction: column;
     min-height: 90%;
-    /* justify-content: space-evenly; */
+    justify-content: space-around;
 }
+
+#modal-overlay {
+    width: 100%;
+    height: 100vh;
+    /* left: 25%; */
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#modal-overlay > #modal {
+    max-width: 650px;
+    width: 100%;
+    background: white;
+    height: 400px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#modal-overlay > #modal > .modal-footer {
+    margin-top: auto;
+}
+
 
 
 
@@ -118,6 +159,7 @@ button:hover {
     background-color: white;
     margin-top: 40px;
 }
+
 
 .card-value-suit {
     display: inline-block;
@@ -150,3 +192,86 @@ button:hover {
 .card.hearts, .card.diamonds {
     color: red;
 }
+
+
+.pushable {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+}
+
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+        to left,
+        hsl(43deg 100% 16%) 0%,
+        hsl(43deg 100% 32%) 8%,
+        hsl(43deg 100% 32%) 92%,
+        hsl(43deg 100% 16%) 100%
+    );
+}
+
+.front {
+    display: block;
+    position: relative;
+    padding: 12px 30px;
+    border-radius: 12px;
+    font-size: 1.35rem;
+    font-weight: bold;
+    color: #016f32;;
+    background: hsl(41deg 100% 47%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.pushable:hover { 
+    filter: brightness(110%);
+}
+
+.pushable:hover .front {
+    transform: translateY(-6px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.pushable:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+
+.pushable:hover .shadow {
+    transform: translateY(4px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.pushable:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+
+.pushable:focus:not(:focus-visible) {
+    outline: none;
+}
+

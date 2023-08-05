@@ -10,6 +10,7 @@ let dealerHasBlackjack = false;
 let userHasPocketAce = false;
 let dealerIsShowingPossibleBlackjack = false;
 let message = "";
+let balance = 0;
 
 function buildDeck() {
     const values = [ 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -51,16 +52,47 @@ const userCardsElement = document.getElementById('user-cards');
 const userTotalElement = document.getElementById('user-total');
 const dealerCardsElement = document.getElementById('dealer-cards');
 const dealerTotalElement = document.getElementById('dealer-total');
+const balanceElement = document.getElementById('balance-element');
 const startButton = document.getElementById('start-button');
 const gameButtons = document.getElementById('game-buttons');
 const playAgainButton = document.getElementById('play-again-button');
+const modalWindowOverlay = document.getElementById("modal-overlay");
+
 if (isUserAlive === false) {
     startButton.style.display = 'block';
     gameButtons.style.display = 'none';
     playAgainButton.style.display = 'none';
 } 
 
+function depositMoney() {
+    modalWindowOverlay.style.display = "flex";
+}
+
+const closeModalButton = document.getElementById('close-modal');
+
+const hideModalWindow = () => {
+    modalWindowOverlay.style.display = 'none';
+}
+
+closeModalButton.addEventListener("click", hideModalWindow);
+
+const hideModalWindowOnBlur = (e) => {
+    if (e.target === e.currentTarget) {
+        console.log(e.target === e.currentTarget);
+        hideModalWindow();
+    }
+}
+
+modalWindowOverlay.addEventListener("click", hideModalWindowOnBlur);
+
+function saveMoney(amount) {
+    hideModalWindow();
+    balance = amount;
+    balanceElement.innerText = "Money: $" + balance;
+}
+
 function startGame() {
+    balanceElement.innerText = "Money: $" + balance;
     deck = buildDeck();
     playAgainButton.style.display = 'none';
     userCardsElement.innerHTML = "";
