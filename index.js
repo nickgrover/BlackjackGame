@@ -57,12 +57,18 @@ const startButton = document.getElementById('start-button');
 const gameButtons = document.getElementById('game-buttons');
 const playAgainButton = document.getElementById('play-again-button');
 const modalWindowOverlay = document.getElementById("modal-overlay");
+const depositMoneyButton = document.getElementById('deposit-money');
 
-if (isUserAlive === false) {
-    startButton.style.display = 'block';
-    gameButtons.style.display = 'none';
-    playAgainButton.style.display = 'none';
-} 
+// if (isUserAlive === false) {
+//     startButton.style.display = 'block';
+//     gameButtons.style.display = 'none';
+//     playAgainButton.style.display = 'none';
+// } 
+
+
+startButton.style.display = 'none';
+gameButtons.style.display = 'none';
+playAgainButton.style.display = 'none';
 
 function depositMoney() {
     modalWindowOverlay.style.display = "flex";
@@ -86,9 +92,13 @@ const hideModalWindowOnBlur = (e) => {
 modalWindowOverlay.addEventListener("click", hideModalWindowOnBlur);
 
 function saveMoney(amount) {
-    hideModalWindow();
-    balance = amount;
-    balanceElement.innerText = "Money: $" + balance;
+    if (amount > 0) {
+        hideModalWindow();
+        balance = amount;
+        balanceElement.innerText = "Money: $" + balance;
+        startButton.style.display = "block";
+        depositMoneyButton.style.display = "none";
+    }
 }
 
 function startGame() {
