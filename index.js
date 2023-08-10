@@ -10,7 +10,8 @@ let dealerHasBlackjack = false;
 let userHasPocketAce = false;
 let dealerIsShowingPossibleBlackjack = false;
 let message = "";
-let balance = 0;
+let totalMoneyBalance = 0;
+let currentHandMoney = 0;
 
 function buildDeck() {
     const values = [ 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -58,6 +59,7 @@ const gameButtons = document.getElementById('game-buttons');
 const playAgainButton = document.getElementById('play-again-button');
 const modalWindowOverlay = document.getElementById("modal-overlay");
 const depositMoneyButton = document.getElementById('deposit-money');
+const chipButtons = document.getElementById('chips');
 
 // if (isUserAlive === false) {
 //     startButton.style.display = 'block';
@@ -69,6 +71,7 @@ const depositMoneyButton = document.getElementById('deposit-money');
 startButton.style.display = 'none';
 gameButtons.style.display = 'none';
 playAgainButton.style.display = 'none';
+chipButtons.style.display = 'none';
 
 function depositMoney() {
     modalWindowOverlay.style.display = "flex";
@@ -94,17 +97,18 @@ modalWindowOverlay.addEventListener("click", hideModalWindowOnBlur);
 function saveMoney(amount) {
     if (amount > 0) {
         hideModalWindow();
-        balance = amount;
-        balanceElement.innerText = "Money: $" + balance;
+        totalMoneyBalance = amount;
+        balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
         startButton.style.display = "block";
         depositMoneyButton.style.display = "none";
     }
 }
 
 function startGame() {
-    balanceElement.innerText = "Money: $" + balance;
+    balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
     deck = buildDeck();
     playAgainButton.style.display = 'none';
+    chipButtons.style.display = 'block';
     userCardsElement.innerHTML = "";
     dealerCardsElement.innerHTML = "";
     let userFirstCard = getRandomCard(deck);

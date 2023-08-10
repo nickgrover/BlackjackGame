@@ -146,9 +146,6 @@ button {
     margin-top: auto;
 }
 
-
-
-
 .card {
     position: relative;
     width: 100px;
@@ -159,7 +156,6 @@ button {
     background-color: white;
     margin-top: 40px;
 }
-
 
 .card-value-suit {
     display: inline-block;
@@ -275,107 +271,122 @@ button {
     outline: none;
 }
 
-/* #five-bet, #ten-bet, #fifteen-bet, #twenty-bet {
-    width: 75px;
+
+.pokerchip {
+    margin: 1em;
+    position: relative;
+    display: inline-block;
+    width: 151px;
+    height: 151px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5), 0 0 3px 0 rgba(0, 0, 0, 0.4) inset;
     border-radius: 50%;
+    background-size: 151px 151px;
+    background-position: center center;
 }
 
-#five-bet, #ten-bet, #fifteen-bet {
-    margin-right: 10px;
-}
-
-#ten-bet, #fifteen-bet, #twenty-bet {
-    margin-left: 10px;
-} */
-
-/* #bets {
-    width: 500px;
-    border: 1px;
-}
-
-#bets button {
-    outline: none;
-    background: none;
-    border: 0;
-    margin: .5em;
-}
-
-.chip {
-    width: 25%;
-}
-
-.chip-circle {
-    width: 100%;
-    height: 0%;
+.pokerchip::before {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    width: 117px;
+    height: 117px;
     border-radius: 50%;
-    border: 8px solid #cfdcec;
-    overflow: hidden;
-    background: #4679BD;
-    box-shadow: 0 0 3px gray;
+    top: 9px;
+    left: 9px;
+    background-size: 151px 151px;
+    background-position: center center;
 }
 
-.chip-circle:hover {
-    background: #30588e;
-}
-
-.chip span {
-    display: block;
-    float: left;
-    width: 100%;
-    padding-top: 50%;
-    padding-bottom: 50%;
-    line-height: 1em;
-    margin-top: -0.5em;
+.pokerchip::after {
+    z-index: 2;
+    position: absolute;
+    content: "25";
     text-align: center;
-    color: #e2eaf3;
-    font-family: Verdana;
-    font-size: 1.9em;
-    font-weight: bold;
-    text-decoration: none;
-} */
-
-.chip {
-    width: 190px;
-    height: 190px;
-    position: fixed;
-    background: #FCBE5C;
-    top: 45px;
-    left: 95px;
+    font: bold 50px/111px Arial;
+    white-space: pre;
+    width: 111px;
+    height: 111px;
     border-radius: 50%;
-    border: 10px solid #0B2429;
+    top: 20px;
+    left: 20px;
+    text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.3), 1px 1px 0px rgba(255, 255, 255, 0.2);
 }
 
-.chip::before {
-    content: "";
-    width: 120px;
-    height: 120px;
-    position: absolute;
-    background: #0B2429;
-    top: 25px;
-    left: 25px;
-    border-radius: 50%;
-    border: 10px solid #FCBE5C;
-    outline: 10px solid #0B2429;
-}
+.white {
+    background-image: linear-gradient(0deg, transparent 0, transparent 67.5px, #fff 67.5px, #fff 83.5px, transparent 83.5px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 97.4304px, #fff 97.4304px, #fff 113.4304px, transparent 113.4304px, transparent 151px), linear-gradient(120deg, #dddddd 0, #dddddd 97.4304px, #fff 97.4304px, #fff 113.4304px, #dddddd 113.4304px, #dddddd 151px);
+  }
 
-.chip::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 190px;
-    top: 0;
-    left: 80px;
-    background: #0B2429;
-    z-index: -1;
-}
+  .white:before {
+    border: 8px solid #dddddd;
+    background-image: linear-gradient(0deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(30deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(90deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(120deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(150deg, #C1C1C1 0, #C1C1C1 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, #C1C1C1 110.7104px, #C1C1C1 151px);
+  }
 
-.chip-circle {
-    width: 30px;
-    height: 190px;
-    position: absolute;
-    top: 0;
-    left: 80px;
-    background: #0B2429;
-    transform: rotate(90deg);
-    z-index: -1;
-}
+  .white:after {
+    content: "1";
+    background: #dddddd;
+    color: #C1C1C1;
+  }
+
+  .red {
+    background-image: linear-gradient(0deg, transparent 0, transparent 67.5px, #fff 67.5px, #fff 83.5px, transparent 83.5px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 97.4304px, #fff 97.4304px, #fff 113.4304px, transparent 113.4304px, transparent 151px), linear-gradient(120deg, #800000 0, #800000 97.4304px, #fff 97.4304px, #fff 113.4304px, #800000 113.4304px, #800000 151px);
+  }
+
+  .red:before {
+    border: 8px solid #800000;
+    background-image: linear-gradient(0deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(30deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(90deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(120deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(150deg, #6C0000 0, #6C0000 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, #6C0000 110.7104px, #6C0000 151px);
+  }
+
+  .red:after {
+    content: "5";
+    background: #800000;
+    color: #6C0000;
+  }
+
+  .blue {
+    background-image: linear-gradient(0deg, transparent 0, transparent 67.5px, #fff 67.5px, #fff 83.5px, transparent 83.5px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 97.4304px, #fff 97.4304px, #fff 113.4304px, transparent 113.4304px, transparent 151px), linear-gradient(120deg, #000099 0, #000099 97.4304px, #fff 97.4304px, #fff 113.4304px, #000099 113.4304px, #000099 151px);
+  }
+
+  .blue:before {
+    border: 8px solid #000099;
+    background-image: linear-gradient(0deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(30deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(90deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(120deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(150deg, #00016C 0, #00016C 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, #00016C 110.7104px, #00016C 151px);
+  }
+
+  .blue:after {
+    content: "10";
+    background: #000099;
+    color: #00016C;
+  }
+
+  .green {
+    background-image: linear-gradient(0deg, transparent 0, transparent 67.5px, #fff 67.5px, #fff 83.5px, transparent 83.5px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 97.4304px, #fff 97.4304px, #fff 113.4304px, transparent 113.4304px, transparent 151px), linear-gradient(120deg, #008000 0, #008000 97.4304px, #fff 97.4304px, #fff 113.4304px, #008000 113.4304px, #008000 151px);
+  }
+
+  .green:before {
+    border: 8px solid #008000;
+    background-image: linear-gradient(0deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(30deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(90deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(120deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(150deg, #016C00 0, #016C00 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, #016C00 110.7104px, #016C00 151px);
+  }
+
+  .green:after {
+    content: "25";
+    background: #008000;
+    color: #016C00;
+  }
+
+  .black {
+    background-image: linear-gradient(0deg, transparent 0, transparent 67.5px, #fff 67.5px, #fff 83.5px, transparent 83.5px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 97.4304px, #fff 97.4304px, #fff 113.4304px, transparent 113.4304px, transparent 151px), linear-gradient(120deg, #222222 0, #222222 97.4304px, #fff 97.4304px, #fff 113.4304px, #222222 113.4304px, #222222 151px);
+  }
+
+  .black:before {
+    border: 8px solid #222222;
+    background-image: linear-gradient(0deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(30deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(60deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(90deg, transparent 0, transparent 69.5px, #EBEBEB 69.5px, #EBEBEB 81.5px, transparent 81.5px, transparent 151px), linear-gradient(120deg, transparent 0, transparent 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, transparent 110.7104px, transparent 151px), linear-gradient(150deg, #000000 0, #000000 98.7104px, #EBEBEB 98.7104px, #EBEBEB 110.7104px, #000000 110.7104px, #000000 151px);
+  }
+  .black:after {
+    content: "100";
+    background: #222222;
+    color: #000000;
+  }
+
+  .pokerchip:hover {
+    filter: brightness(110%);
+    transform: scale(1.05);
+  }
