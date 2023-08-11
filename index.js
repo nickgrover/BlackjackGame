@@ -106,9 +106,9 @@ function saveMoney(amount) {
 
 function startGame() {
     balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
+    placeBet();
     deck = buildDeck();
     playAgainButton.style.display = 'none';
-    chipButtons.style.display = 'block';
     userCardsElement.innerHTML = "";
     dealerCardsElement.innerHTML = "";
     let userFirstCard = getRandomCard(deck);
@@ -138,6 +138,10 @@ function startGame() {
         userHasBlackjack = true;
     }
     renderGame();
+}
+
+function placeBet() {
+    chipButtons.style.display = 'block';
 }
 
 function displayCard(currentCard, displayElement) {
