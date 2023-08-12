@@ -60,6 +60,7 @@ const playAgainButton = document.getElementById('play-again-button');
 const modalWindowOverlay = document.getElementById("modal-overlay");
 const depositMoneyButton = document.getElementById('deposit-money');
 const chipButtons = document.getElementById('chips');
+const currentHand = document.getElementById('current-hand');
 
 // if (isUserAlive === false) {
 //     startButton.style.display = 'block';
@@ -106,6 +107,7 @@ function saveMoney(amount) {
 
 function startGame() {
     balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
+    currentHand.innerText = "Current Hand: $0";
     placeBet();
     deck = buildDeck();
     playAgainButton.style.display = 'none';
@@ -142,6 +144,34 @@ function startGame() {
 
 function placeBet() {
     chipButtons.style.display = 'block';
+    const onePlacePokerChipBtn = document.getElementById('one');
+    onePlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(1);
+    });
+    const fivePlacePokerChipBtn = document.getElementById('five');
+    fivePlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(5);
+    });
+    const tenPlacePokerChipBtn = document.getElementById('ten');
+    tenPlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(10);
+    });
+    const twentyFivePlacePokerChipBtn = document.getElementById('twenty-five');
+    twentyFivePlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(25);
+    });
+    const oneHundredPlacePokerChipBtn = document.getElementById('one-hundred');
+    oneHundredPlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(100);
+    });
+}
+
+function updateChipsForBet(amount) {
+    currentHandMoney += amount;
+    totalMoneyBalance -= amount;
+    currentHand.innerText = `Current Hand: \$${currentHandMoney}`;
+    balanceElement.innerText =`Remaining Balance: \$${totalMoneyBalance}`;
+
 }
 
 function displayCard(currentCard, displayElement) {

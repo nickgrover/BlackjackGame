@@ -13,7 +13,7 @@
             
             <h3 id="game-message">Press start to begin a game</h3>
             <p id="balance-element">Remaining Balance: $0</p>
-            <p>Current Hand:</p>
+            <p id="current-hand">Current Hand:</p>
             <div class="board">
                 <div class="player-side">
                     <div class="person"> 
@@ -76,11 +76,11 @@
                     </button>
                 </div>
                     <div class="chips" id="chips">
-                        <div class="pokerchip white pushable"></div>
-                        <div class="pokerchip red pushable"></div>
-                        <div class="pokerchip blue pushable"></div>
-                        <div class="pokerchip green pushable"></div>
-                        <div class="pokerchip black pushable"></div>
+                        <div class="pokerchip white pushable" id="one"></div>
+                        <div class="pokerchip red pushable" id="five"></div>
+                        <div class="pokerchip blue pushable" id="ten"></div>
+                        <div class="pokerchip green pushable" id="twenty-five"></div>
+                        <div class="pokerchip black pushable" id="one-hundred"></div>
                     </div>
             </div>
             <div id="modal-overlay">
