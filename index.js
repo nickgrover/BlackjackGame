@@ -12,6 +12,7 @@ let dealerIsShowingPossibleBlackjack = false;
 let message = "";
 let totalMoneyBalance = 0;
 let currentHandMoney = 0;
+let betHasBeenPlaced = false;
 
 function buildDeck() {
     const values = [ 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -61,6 +62,7 @@ const modalWindowOverlay = document.getElementById("modal-overlay");
 const depositMoneyButton = document.getElementById('deposit-money');
 const chipButtons = document.getElementById('chips');
 const currentHand = document.getElementById('current-hand');
+const playHandButton = document.getElementById('play-hand-button');
 
 // if (isUserAlive === false) {
 //     startButton.style.display = 'block';
@@ -73,6 +75,7 @@ startButton.style.display = 'none';
 gameButtons.style.display = 'none';
 playAgainButton.style.display = 'none';
 chipButtons.style.display = 'none';
+playHandButton.style.display = 'none';
 
 function depositMoney() {
     modalWindowOverlay.style.display = "flex";
@@ -108,7 +111,47 @@ function saveMoney(amount) {
 function startGame() {
     balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
     currentHand.innerText = "Current Hand: $0";
+    startButton.style.display = 'none';
     placeBet();
+    gameMessageElement.innerText = "Place your bet. Press 'Play Hand' when ready"
+    playHandButton.style.display = 'block';
+    playHandButton.addEventListener('click', playHand);
+}
+
+function placeBet() {
+    chipButtons.style.display = 'block';
+    const onePlacePokerChipBtn = document.getElementById('one');
+    onePlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(1);
+    });
+    const fivePlacePokerChipBtn = document.getElementById('five');
+    fivePlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(5);
+    });
+    const tenPlacePokerChipBtn = document.getElementById('ten');
+    tenPlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(10);
+    });
+    const twentyFivePlacePokerChipBtn = document.getElementById('twenty-five');
+    twentyFivePlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(25);
+    });
+    const oneHundredPlacePokerChipBtn = document.getElementById('one-hundred');
+    oneHundredPlacePokerChipBtn.addEventListener('click', () => {
+        updateChipsForBet(100);
+    });
+    
+}
+
+function updateChipsForBet(amount) {
+    currentHandMoney += amount;
+    totalMoneyBalance -= amount;
+    currentHand.innerText = `Current Hand: \$${currentHandMoney}`;
+    balanceElement.innerText =`Remaining Balance: \$${totalMoneyBalance}`;
+}
+
+function playHand() {
+    playHandButton.style.display = 'none';
     deck = buildDeck();
     playAgainButton.style.display = 'none';
     userCardsElement.innerHTML = "";
@@ -140,38 +183,6 @@ function startGame() {
         userHasBlackjack = true;
     }
     renderGame();
-}
-
-function placeBet() {
-    chipButtons.style.display = 'block';
-    const onePlacePokerChipBtn = document.getElementById('one');
-    onePlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(1);
-    });
-    const fivePlacePokerChipBtn = document.getElementById('five');
-    fivePlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(5);
-    });
-    const tenPlacePokerChipBtn = document.getElementById('ten');
-    tenPlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(10);
-    });
-    const twentyFivePlacePokerChipBtn = document.getElementById('twenty-five');
-    twentyFivePlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(25);
-    });
-    const oneHundredPlacePokerChipBtn = document.getElementById('one-hundred');
-    oneHundredPlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(100);
-    });
-}
-
-function updateChipsForBet(amount) {
-    currentHandMoney += amount;
-    totalMoneyBalance -= amount;
-    currentHand.innerText = `Current Hand: \$${currentHandMoney}`;
-    balanceElement.innerText =`Remaining Balance: \$${totalMoneyBalance}`;
-
 }
 
 function displayCard(currentCard, displayElement) {
