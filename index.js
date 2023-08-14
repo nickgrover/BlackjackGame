@@ -6,6 +6,7 @@ let userSum = 0;
 let dealerSum = 0;
 let isUserAlive = false;
 let userHasBlackjack = false;
+let userHasWonNoBlackjack = false;
 let dealerHasBlackjack = false;
 let userHasPocketAce = false;
 let dealerIsShowingPossibleBlackjack = false;
@@ -111,7 +112,12 @@ function saveMoney(amount) {
 function startGame() {
     balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
     currentHand.innerText = "Current Hand: $0";
+    userTotalElement.textContent = "Your total: ";
+    dealerTotalElement.textContent ="Dealer's Total: ";
     startButton.style.display = 'none';
+    playAgainButton.style.display = 'none';
+    userCardsElement.innerHTML = "";
+    dealerCardsElement.innerHTML = "";
     placeBet();
     gameMessageElement.innerText = "Place your bet. Press 'Play Hand' when ready"
     playHandButton.style.display = 'block';
@@ -129,9 +135,8 @@ function placeBet() {
         updateChipsForBet(5);
     });
     const tenPlacePokerChipBtn = document.getElementById('ten');
-    tenPlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(10);
-    });
+    tenPlacePokerChipBtn.addEventListener('click', updateChipsForBet.bind(null, 10));
+
     const twentyFivePlacePokerChipBtn = document.getElementById('twenty-five');
     twentyFivePlacePokerChipBtn.addEventListener('click', () => {
         updateChipsForBet(25);
@@ -144,18 +149,47 @@ function placeBet() {
 }
 
 function updateChipsForBet(amount) {
-    currentHandMoney += amount;
-    totalMoneyBalance -= amount;
+    console.log(amount);
+    console.log(currentHandMoney);
+    console.log(totalMoneyBalance);
+    if (totalMoneyBalance - amount >= 0) {
+        currentHandMoney += amount;
+        totalMoneyBalance -= amount;
+    }
+    console.log(currentHandMoney);
+    console.log(totalMoneyBalance);
     currentHand.innerText = `Current Hand: \$${currentHandMoney}`;
     balanceElement.innerText =`Remaining Balance: \$${totalMoneyBalance}`;
 }
 
+function removeChipButtons() {
+    const onePlacePokerChipBtn = document.getElementById('one');
+    onePlacePokerChipBtn.removeEventListener('click', () => {
+        updateChipsForBet;
+    });
+    const fivePlacePokerChipBtn = document.getElementById('five');
+    fivePlacePokerChipBtn.removeEventListener('click', () => {
+        updateChipsForBet;
+    });
+    const tenPlacePokerChipBtn = document.getElementById('ten');
+    tenPlacePokerChipBtn.removeEventListener('click', updateChipsForBet);
+    
+    const twentyFivePlacePokerChipBtn = document.getElementById('twenty-five');
+    twentyFivePlacePokerChipBtn.removeEventListener('click', () => {
+        updateChipsForBet;
+    });
+    const oneHundredPlacePokerChipBtn = document.getElementById('one-hundred');
+    oneHundredPlacePokerChipBtn.removeEventListener('click', () => {
+        updateChipsForBet;
+    });
+    chipButtons.style.display = 'none';
+}
+
 function playHand() {
+    removeChipButtons();
     playHandButton.style.display = 'none';
     deck = buildDeck();
-    playAgainButton.style.display = 'none';
-    userCardsElement.innerHTML = "";
-    dealerCardsElement.innerHTML = "";
+
     let userFirstCard = getRandomCard(deck);
     let dealerFirstCard = getRandomCard(deck);
     let userSecondCard = getRandomCard(deck);
@@ -224,7 +258,6 @@ function renderGame() {
 function playUserHand() {
     if (userSum === 21 && userHasBlackjack === false) {
         gameMessageElement.textContent = "You got 21! Checking on dealer";
-        userHasBlackjack = true;
         stay();
         startButton.style.display = 'none';
         gameButtons.style.display = 'none';
@@ -300,6 +333,7 @@ function checkForDealerBlackjack() {
             displayRestOfDealerInfo();
             dealerHasBlackjack = false;
             gameMessageElement.textContent = "Blackjack, you win!";
+            updateTotalChipsAfterHand();
             clearGame();
         } else if (dealerSum === 21 && userSum === 21 ) {
             displayRestOfDealerInfo();
@@ -323,16 +357,29 @@ function checkForDealerBlackjack() {
     return dealerHasBlackjack;
 }
 
+function updateTotalChipsAfterHand() {
+    if (userHasBlackjack) {
+        totalMoneyBalance += currentHandMoney * 1.5;
+    } else if (!userHasBlackjack && userHasWonNoBlackjack) {
+        totalMoneyBalance += currentHandMoney;
+    } 
+    balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
+
+}
+
 function checkWinner() {
     if (dealerSum > 21) {
         gameMessageElement.textContent = "Dealer busted. You win!";
+        userHasWonNoBlackjack = true;
     } else if (userSum > dealerSum) {
         gameMessageElement.textContent = "Congratulations, you won!";
+        userHasWonNoBlackjack = true;
     } else if (userSum < dealerSum) { 
         gameMessageElement.textContent = "Sorry, you lost!";
     } else {
         gameMessageElement.textContent = "You pushed!";
     }
+    updateTotalChipsAfterHand();
     clearGame();
 }
 
@@ -342,8 +389,11 @@ function clearGame() {
     userSum = 0;
     dealerSum = 0;
     cardIndex = 51;
+    currentHandMoney = 0;
+    currentHand.innerText = "Current Hand: ";
     isUserAlive = false;
     userHasBlackjack = false;
+    userHasWonNoBlackjack = false;
     dealerHasBlackjack = false;
     userHasPocketAce = false;
     dealerIsShowingPossibleBlackjack = false;
