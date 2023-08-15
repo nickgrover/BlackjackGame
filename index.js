@@ -109,6 +109,26 @@ function saveMoney(amount) {
     }
 }
 
+const onePlacePokerChipBtn = document.getElementById('one');
+onePlacePokerChipBtn.addEventListener('click', () => {
+    updateChipsForBet(1);
+});
+const fivePlacePokerChipBtn = document.getElementById('five');
+fivePlacePokerChipBtn.addEventListener('click', () => {
+    updateChipsForBet(5);
+});
+const tenPlacePokerChipBtn = document.getElementById('ten');
+tenPlacePokerChipBtn.addEventListener('click', updateChipsForBet.bind(null, 10));
+
+const twentyFivePlacePokerChipBtn = document.getElementById('twenty-five');
+twentyFivePlacePokerChipBtn.addEventListener('click', () => {
+    updateChipsForBet(25);
+});
+const oneHundredPlacePokerChipBtn = document.getElementById('one-hundred');
+oneHundredPlacePokerChipBtn.addEventListener('click', () => {
+    updateChipsForBet(100);
+});
+
 function startGame() {
     balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
     currentHand.innerText = "Current Hand: $0";
@@ -125,63 +145,55 @@ function startGame() {
 }
 
 function placeBet() {
+    if (totalMoneyBalance < 1) {
+        onePlacePokerChipBtn.classList.add('disabled');
+    }
+    if (totalMoneyBalance < 5) {
+        fivePlacePokerChipBtn.classList.add('disabled');
+    }
+    if (totalMoneyBalance < 10) {
+        tenPlacePokerChipBtn.classList.add('disabled');
+    }
+    if (totalMoneyBalance < 25) {
+        twentyFivePlacePokerChipBtn.classList.add('disabled');
+    }
+    if (totalMoneyBalance < 100) {
+        oneHundredPlacePokerChipBtn.classList.add('disabled');
+    }
     chipButtons.style.display = 'block';
-    const onePlacePokerChipBtn = document.getElementById('one');
-    onePlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(1);
-    });
-    const fivePlacePokerChipBtn = document.getElementById('five');
-    fivePlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(5);
-    });
-    const tenPlacePokerChipBtn = document.getElementById('ten');
-    tenPlacePokerChipBtn.addEventListener('click', updateChipsForBet.bind(null, 10));
-
-    const twentyFivePlacePokerChipBtn = document.getElementById('twenty-five');
-    twentyFivePlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(25);
-    });
-    const oneHundredPlacePokerChipBtn = document.getElementById('one-hundred');
-    oneHundredPlacePokerChipBtn.addEventListener('click', () => {
-        updateChipsForBet(100);
-    });
-    
 }
 
 function updateChipsForBet(amount) {
-    console.log(amount);
-    console.log(currentHandMoney);
-    console.log(totalMoneyBalance);
     if (totalMoneyBalance - amount >= 0) {
         currentHandMoney += amount;
         totalMoneyBalance -= amount;
+    } else {
+        gameMessageElement.innerText = "Not enough money. Please choose a different amount"
     }
-    console.log(currentHandMoney);
-    console.log(totalMoneyBalance);
     currentHand.innerText = `Current Hand: \$${currentHandMoney}`;
     balanceElement.innerText =`Remaining Balance: \$${totalMoneyBalance}`;
 }
 
 function removeChipButtons() {
-    const onePlacePokerChipBtn = document.getElementById('one');
-    onePlacePokerChipBtn.removeEventListener('click', () => {
-        updateChipsForBet;
-    });
-    const fivePlacePokerChipBtn = document.getElementById('five');
-    fivePlacePokerChipBtn.removeEventListener('click', () => {
-        updateChipsForBet;
-    });
-    const tenPlacePokerChipBtn = document.getElementById('ten');
-    tenPlacePokerChipBtn.removeEventListener('click', updateChipsForBet);
+    // const onePlacePokerChipBtn = document.getElementById('one');
+    // onePlacePokerChipBtn.removeEventListener('click', () => {
+    //     updateChipsForBet;
+    // });
+    // const fivePlacePokerChipBtn = document.getElementById('five');
+    // fivePlacePokerChipBtn.removeEventListener('click', () => {
+    //     updateChipsForBet;
+    // });
+    // const tenPlacePokerChipBtn = document.getElementById('ten');
+    // tenPlacePokerChipBtn.removeEventListener('click', updateChipsForBet);
     
-    const twentyFivePlacePokerChipBtn = document.getElementById('twenty-five');
-    twentyFivePlacePokerChipBtn.removeEventListener('click', () => {
-        updateChipsForBet;
-    });
-    const oneHundredPlacePokerChipBtn = document.getElementById('one-hundred');
-    oneHundredPlacePokerChipBtn.removeEventListener('click', () => {
-        updateChipsForBet;
-    });
+    // const twentyFivePlacePokerChipBtn = document.getElementById('twenty-five');
+    // twentyFivePlacePokerChipBtn.removeEventListener('click', () => {
+    //     updateChipsForBet;
+    // });
+    // const oneHundredPlacePokerChipBtn = document.getElementById('one-hundred');
+    // oneHundredPlacePokerChipBtn.removeEventListener('click', () => {
+    //     updateChipsForBet;
+    // });
     chipButtons.style.display = 'none';
 }
 
@@ -359,9 +371,9 @@ function checkForDealerBlackjack() {
 
 function updateTotalChipsAfterHand() {
     if (userHasBlackjack) {
-        totalMoneyBalance += currentHandMoney * 1.5;
+        totalMoneyBalance += currentHandMoney + (currentHandMoney * 1.5);
     } else if (!userHasBlackjack && userHasWonNoBlackjack) {
-        totalMoneyBalance += currentHandMoney;
+        totalMoneyBalance += currentHandMoney * 2;
     } 
     balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
 
