@@ -4,7 +4,7 @@ body {
     background-size: cover;
     text-align: center;
     color: white;
-    height: 80vh;
+    max-height: 80vh;
     font-size: 24px;
 }
 
@@ -14,21 +14,10 @@ h1 {
 }
 
 button {
-    /* color: #016f32; */
     width: 175px;
-    /* background: goldenrod; */
-    /* padding-top: 5px;
-    padding-bottom: 5px;
-    font-weight: bold; */
-    /* border: none; */
-    /* border-radius: 3px; */
-    /* font-size: 24px; */
-    /* height: 50px; */
-    /* box-shadow: 0px 0px 1px 1px rgb(211,211,211); */
 }
 
 .buttons {
-    /* flex-grow: 1; */
     height: 200px;
 }
 
@@ -38,18 +27,6 @@ button {
 #hit {
     margin-left: 2px;
 }
-
-/* button:hover {
-    background-color: rgb(211,211,211);
-    transition: 0.3s;
-} */
-
-#player-name, #dealer-name { 
-    /* line-height: 50px;  */
-    /* font-size: 28px;
-    text-align: center; */
-    /* margin: auto;  */
-} 
 
 .person {
     width: 200px;
@@ -71,23 +48,19 @@ button {
 
 #game-message {
     font-size: 28px;
-    /* height: 20px; */
 }
 
 .board {
     display: flex;
     justify-content: space-around;
     height: 350px;
-    /* height: 100%; */
     margin-bottom: 50px;
-    /* margin-top: 20px; */
 }
 
 .player-side, .dealer-side{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* height: 100%; */
 }
 
 .user, .dealer {
@@ -120,12 +93,20 @@ button {
     justify-content: space-around;
 }
 
+.money {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 #modal-overlay {
     width: 100%;
-    height: 100vh;
-    /* left: 25%; */
+    height: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
     position: absolute;
-    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.397);
     display: none;
     align-items: center;
     justify-content: center;
@@ -139,7 +120,21 @@ button {
     color: black;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#deposit-modal {
+    margin-left: 7px;
+}
+
+#close-modal {
+    margin-right: 7px;
+}
+
+.bet-options {
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 #modal-overlay > #modal > .modal-footer {
@@ -276,8 +271,8 @@ button {
     margin: 1em;
     position: relative;
     display: inline-block;
-    width: 151px;
-    height: 151px;
+    width: 136px;
+    height: 136px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5), 0 0 3px 0 rgba(0, 0, 0, 0.4) inset;
     border-radius: 50%;
     background-size: 151px 151px;
@@ -288,8 +283,8 @@ button {
     position: absolute;
     content: "";
     z-index: 1;
-    width: 117px;
-    height: 117px;
+    width: 102px;
+    height: 102px;
     border-radius: 50%;
     top: 9px;
     left: 9px;
@@ -302,10 +297,10 @@ button {
     position: absolute;
     content: "25";
     text-align: center;
-    font: bold 50px/111px Arial;
+    font: bold 38px/99px Arial;
     white-space: pre;
-    width: 111px;
-    height: 111px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
     top: 20px;
     left: 20px;
@@ -395,3 +390,10 @@ button {
     pointer-events: none;
     opacity: 0.5;
   }
+
+  .bet-options {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}

@@ -7,6 +7,7 @@ let dealerSum = 0;
 let isUserAlive = false;
 let userHasBlackjack = false;
 let userHasWonNoBlackjack = false;
+let userHasPushed = false;
 let dealerHasBlackjack = false;
 let userHasPocketAce = false;
 let dealerIsShowingPossibleBlackjack = false;
@@ -147,18 +148,28 @@ function startGame() {
 function placeBet() {
     if (totalMoneyBalance < 1) {
         onePlacePokerChipBtn.classList.add('disabled');
+    } else {
+        onePlacePokerChipBtn.classList.remove('disabled');
     }
     if (totalMoneyBalance < 5) {
         fivePlacePokerChipBtn.classList.add('disabled');
+    } else {
+        fivePlacePokerChipBtn.classList.remove('disabled');
     }
     if (totalMoneyBalance < 10) {
         tenPlacePokerChipBtn.classList.add('disabled');
+    } else {
+        tenPlacePokerChipBtn.classList.remove('disabled');
     }
     if (totalMoneyBalance < 25) {
         twentyFivePlacePokerChipBtn.classList.add('disabled');
+    } else {
+        twentyFivePlacePokerChipBtn.classList.remove('disabled');
     }
     if (totalMoneyBalance < 100) {
         oneHundredPlacePokerChipBtn.classList.add('disabled');
+    } else {
+        oneHundredPlacePokerChipBtn.classList.remove('disabled');
     }
     chipButtons.style.display = 'block';
 }
@@ -374,7 +385,9 @@ function updateTotalChipsAfterHand() {
         totalMoneyBalance += currentHandMoney + (currentHandMoney * 1.5);
     } else if (!userHasBlackjack && userHasWonNoBlackjack) {
         totalMoneyBalance += currentHandMoney * 2;
-    } 
+    } else if (userHasPushed) {
+        totalMoneyBalance += currentHandMoney;
+    }
     balanceElement.innerText = "Remaining Balance: $" + totalMoneyBalance;
 
 }
@@ -390,6 +403,7 @@ function checkWinner() {
         gameMessageElement.textContent = "Sorry, you lost!";
     } else {
         gameMessageElement.textContent = "You pushed!";
+        userHasPushed = true;
     }
     updateTotalChipsAfterHand();
     clearGame();
@@ -406,6 +420,7 @@ function clearGame() {
     isUserAlive = false;
     userHasBlackjack = false;
     userHasWonNoBlackjack = false;
+    userHasPushed = false;
     dealerHasBlackjack = false;
     userHasPocketAce = false;
     dealerIsShowingPossibleBlackjack = false;
