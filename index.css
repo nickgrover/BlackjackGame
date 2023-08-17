@@ -10,7 +10,42 @@ body {
 
 h1 {
     color: goldenrod;
-    height: 5%;
+    /* height: 75px; */
+    font-size: 64px;
+}
+
+.header-row {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 120px;
+    margin-top: 30px;
+}
+
+.centered-title {
+    flex-basis: 57.5%;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.remaining-content {
+    font-size: 28px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.bank {
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-image: linear-gradient(#C0C0C0 10%, 90%, goldenrod);
+}
+
+.message {
+    height: 75px;
 }
 
 button {
@@ -19,6 +54,7 @@ button {
 
 .buttons {
     height: 200px;
+    ;
 }
 
 #stay {
@@ -52,8 +88,8 @@ button {
 
 .board {
     display: flex;
-    justify-content: space-around;
-    height: 350px;
+    justify-content: space-evenly;
+    height: 375px;
     margin-bottom: 50px;
 }
 
@@ -103,6 +139,7 @@ button {
     height: 100%;
     left: 0;
     right: 0;
+    top: 0;
     margin: auto;
     position: absolute;
     border-radius: 10px;
