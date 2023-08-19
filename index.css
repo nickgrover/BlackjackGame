@@ -1,6 +1,6 @@
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-image: url('images/table.jpeg');
+    background-image: url('images/Table5.jpeg');
     background-size: cover;
     text-align: center;
     color: white;
@@ -38,30 +38,61 @@ h1 {
 }
 
 .bank {
-    border: 1px solid black;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-image: linear-gradient(#C0C0C0 10%, 90%, goldenrod);
+    border: 2px solid black;
+    width: 400px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.813);
+    color: rgb(194, 147, 28);
+    font-weight: bold;
+    box-shadow: 5px 5px 5px black;
 }
 
 .message {
-    height: 75px;
+    height: 65px;
+    width: 1000px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.813);
+    color: rgb(37, 28, 5);
+    font-weight: bold;
+    box-shadow: 5px 5px 5px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 button {
+    width: 250px;
+    
+}
+
+.buttons {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* button {
     width: 175px;
 }
 
 .buttons {
     height: 200px;
-    ;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
 
 #stay {
-    margin-right: 2px;
+    margin-right: 7px;
 }
 #hit {
-    margin-left: 2px;
+    margin-left: 7px;
 }
 
 .person {
@@ -83,7 +114,12 @@ button {
 }
 
 #game-message {
-    font-size: 28px;
+    font-size: 34px;
+}
+
+.message-line {
+    display: flex;
+    justify-content: center;
 }
 
 .board {
@@ -100,7 +136,7 @@ button {
 }
 
 .user, .dealer {
-    width: 575px;
+    width: 650px;
     display: flex;
     flex-direction: column;
     height: 80%;
@@ -149,17 +185,23 @@ button {
     justify-content: center;
 }
 
-#modal-overlay > #modal {
+.modal {
     max-width: 650px;
     width: 100%;
     background: white;
     height: 400px;
     color: black;
+    background-color: rgb(245, 241, 241);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     padding: 20px;
     border-radius: 20px;
+    position: relative;
+    box-shadow: rgba(218, 165, 32, 0.561) 0px 10px 36px 0px, rgba(218, 165, 32, 0.201) 0px 0px 0px 1px;
 }
+
 
 #deposit-modal {
     margin-left: 7px;
@@ -169,14 +211,51 @@ button {
     margin-right: 7px;
 }
 
-.bet-options {
-    display: flex;
-    flex-wrap: nowrap;
+@keyframes fade-in {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 
-#modal-overlay > #modal > .modal-footer {
-    margin-top: auto;
+.modal__state:checked + .modal__overlay {
+    opacity: 1;
+    animation: fade-in .4s;
+    display: block;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* input[type=number] {
+  -moz-appearance: textfield;
+} */
+
+.modal-content > input {
+    height: 50px;
+    font-size: 1.2em;
+    text-align: center;
+    /* padding:10px; */
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    
+}
+
+.modal-content {
+    padding-top: 5%;
+    padding-bottom: 15%;
+}
+
+input:focus {
+    /* background-color: rgb(245, 245, 245); */
+    outline: none !important;
+    border: 2px solid goldenrod
+
+}
+
+.modal-footer { 
+    height: 150px;
+}
+
 
 .card {
     position: relative;
@@ -221,6 +300,9 @@ button {
     color: red;
 }
 
+.main-buttons{
+    
+}
 
 .pushable {
     position: relative;
@@ -266,7 +348,7 @@ button {
     position: relative;
     padding: 12px 30px;
     border-radius: 12px;
-    font-size: 1.35rem;
+    font-size: 1.85rem;
     font-weight: bold;
     color: #016f32;;
     background: hsl(41deg 100% 47%);
