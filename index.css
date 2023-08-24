@@ -15,7 +15,8 @@ h1 {
 }
 
 .header-image > img {
-    height: 75px;
+    height: 70px;
+    width: 350px;
 }
 
 .header-image {
@@ -27,17 +28,9 @@ h1 {
     justify-content: space-around;
     align-items: center;
     height: 120px;
-    margin-top: 25px;
-}
-
-.centered-title {
-    text-align: center;
-    width: 400px;
-}
-
-.remaining-content {
-    font-size: 28px;
-    text-align: center;
+    /* margin-top: 25px; */
+    background-color: rgb(47, 46, 46);
+    width: 100%;
 }
 
 .bank {
