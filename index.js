@@ -66,11 +66,7 @@ const chipButtons = document.getElementById('chips');
 const currentHand = document.getElementById('current-hand');
 const playHandButton = document.getElementById('play-hand-button');
 
-// if (isUserAlive === false) {
-//     startButton.style.display = 'block';
-//     gameButtons.style.display = 'none';
-//     playAgainButton.style.display = 'none';
-// } 
+
 
 
 startButton.style.display = 'none';
