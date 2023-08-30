@@ -421,5 +421,10 @@ function clearGame() {
     userHasPocketAce = false;
     dealerIsShowingPossibleBlackjack = false;
     gameButtons.style.display = 'none';
-    playAgainButton.style.display = 'block';
+    // playAgainButton.style.display = 'block';
+    if (totalMoneyBalance < 5) {
+        depositMoneyButton.style.display = 'block';
+    } else {
+        playAgainButton.style.display = 'block';
+    }
 }
