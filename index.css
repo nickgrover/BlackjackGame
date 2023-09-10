@@ -10,7 +10,7 @@ body {
 
 h1 {
     color: goldenrod;
-    /* height: 75px; */
+    height: 75px;
     font-size: 64px;
 }
 
@@ -21,6 +21,8 @@ h1 {
 
 .header-image {
     width: 400px;
+    /* width: 360px; */
+
 }
 
 .header-row {
@@ -28,6 +30,8 @@ h1 {
     justify-content: space-around;
     align-items: center;
     height: 120px;
+    /* height: 80px; */
+
     margin-top: -10px;
     background-color: rgb(47, 46, 46);
     width: 100%;
@@ -58,7 +62,35 @@ h1 {
     font-weight: bold;
     box-shadow: 5px 5px 5px black;
     font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
+
+.plus-element {
+    /* display: inline-block; */
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    width: 50px;
+
+    /* border: 2px solid white; */
+    /* box-sizing: content-box; */
+    /* line-height: 1; */
+    /* vertical-align: middle; */
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+
+/* .plus-element > span {
+    content: \002B;
+    font-size: 50px;
+    vertical-align: middle;
+    line-height: 1;
+
+} */
 
 .message {
     height: 65px;
